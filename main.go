@@ -2,23 +2,15 @@ package main
 
 import "fmt"
 
+func leerEscribir(c chan string) {
+	c <- "Mazda"
+	fmt.Println(<-c)
+}
+
 func main() {
 
-	miCanal := make(chan string, 5)
+	autos := make(chan string, 3)
 
-	// go func() {
-	// 	miCanal <- "Hola"
-	// }()
+	leerEscribir(autos)
 
-	miCanal <- "primera linea"
-	miCanal <- "segunda linea"
-	miCanal <- "tercera linea"
-
-	close(miCanal)
-
-	fmt.Println(<-miCanal)
-fmt.Println("----------------------------------------------------")
-	for v := range miCanal {
-		fmt.Println(v)
-	}
 }
